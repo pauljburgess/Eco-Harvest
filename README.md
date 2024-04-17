@@ -3,7 +3,7 @@ A full-stack web application used for a Direct-to-Consumer produce production.
 ### Project Started: 2024/04/17
 ### By: Seryah Williams, Paul Burgess, & Patrick D'Arcy
 #### [Seryah's GitHub](https://github.com/SeryahWilliam) 
-#### [Paul' GitHub](https://github.com/pauljburgess) 
+#### [Paul's GitHub](https://github.com/pauljburgess) 
 #### [Patrick's GitHub](https://github.com/rela7e) 
 
 
