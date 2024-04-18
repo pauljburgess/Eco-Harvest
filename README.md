@@ -65,6 +65,11 @@ Getting started is easy! You can check out the app [here]() on Heroku.
 ![alt text](images/about.png)
 
 ---
+### Backend ERD
+
+![ERD](images/ERD.png)
+
+---
 ### Trello Board
 
 This project used a [Trello](https://trello.com/b/fHnGf0q1/project-3) board during development.
