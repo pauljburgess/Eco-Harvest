@@ -21,6 +21,7 @@ If they choose to make an account and login, they will then gain the ability to 
 - HTML 
 - CSS
 - Python
+- Postgresql
 - Django
     - Class-Based Views
     - Authentication
@@ -58,7 +59,7 @@ Getting started is easy! You can check out the app [here]() on Heroku.
 ---
 ### Trello Board
 
-This project used a [Trello]() board during development.
+This project used a [Trello](https://trello.com/b/fHnGf0q1/project-3) board during development.
 
 ---
 ### **Future Updates**
