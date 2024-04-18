@@ -64,3 +64,4 @@ This project used a [Trello]() board during development.
 ### **Future Updates**
 
 - [ ] Add the ability to have multiple venders use the website.
+- [ ] Deploy the app
