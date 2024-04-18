@@ -1,4 +1,4 @@
-# Eco-Harvest
+# ![alt text](images/logo.png) Eco-Harvest
 A full-stack web application used for a Direct-to-Consumer produce production.
 ### Project Started: 2024/04/17
 ### By: Seryah Williams, Paul Burgess, & Patrick D'Arcy
@@ -63,18 +63,6 @@ Getting started is easy! You can check out the app [here]() on Heroku.
 ##### About Page
 
 ![alt text](images/about.png)
-
-##### Login Page
-
-![alt text](images/login.png)
-
-##### Signup Page
-
-![alt text](images/signup.png)
-
-##### Logo
-
-![alt text](images/logo.png)
 
 ---
 ### Trello Board
