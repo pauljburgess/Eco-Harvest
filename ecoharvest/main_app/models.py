@@ -7,3 +7,6 @@ class Product(models.Model):
     description = models.TextField(max_length=250)
     owner = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+class Order(models.Model):
+    pass
