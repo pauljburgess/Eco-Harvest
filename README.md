@@ -70,9 +70,11 @@ Getting started is easy! You can check out the app [here]() on Heroku.
 ![ERD](images/ERD.png)
 
 ---
-### Trello Board
+### Pitch Deck and Trello Board
 
-This project used a [Trello](https://trello.com/b/fHnGf0q1/project-3) board during development.
+[This](https://docs.google.com/presentation/d/1USgFQzdIMH2-mT0xAZy4SzwDUwPvVgptEIK0HRhRevg/edit?usp=sharing) was the slideshow used to pitch the project.
+
+This project also used a [Trello](https://trello.com/b/fHnGf0q1/project-3) board during development.
 
 ---
 ### **Future Updates**
