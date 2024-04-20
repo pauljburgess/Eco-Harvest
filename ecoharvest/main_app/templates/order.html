@@ -7,7 +7,9 @@
     {% csrf_token %}
     <table>
         {{order_form.as_table}}
+       
     </table>
+    <button type="submit">Submit Order</button>
 </form>
 {% endblock %}
 
