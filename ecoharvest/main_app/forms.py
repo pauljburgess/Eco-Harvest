@@ -1,13 +1,10 @@
 from django import forms
+from django.db import models
 from django.forms import ModelForm
-from .models import Order, Product
+from .models import Order, Product, QUANTITIES
 
 class OrderForm(ModelForm):
     class Meta:
         model = Order
-        fields = ['date' , 'quantity']
-        products = forms.ModelMultipleChoiceField(
-            queryset= Product.objects.all()
-        )
-
+        fields = ['date', 'products', 'quantity']
 

@@ -16,6 +16,9 @@ class Product(models.Model):
     owner = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
+
 class Order(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField('Order Date')
