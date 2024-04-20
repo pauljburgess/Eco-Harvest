@@ -45,12 +45,11 @@ def order(request):
    return render(request, 'order.html', {'order_form': order_form})
 
 
-
 def new_order(request):
   form = OrderForm(request.POST)
   if form.is_valid():
       form.save()
-  return redirect('home')
+  return redirect('product_index')
 
 
 
