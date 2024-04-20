@@ -6,5 +6,5 @@ from .models import Order, Product, QUANTITIES, User
 class OrderForm(ModelForm):
     class Meta:
         model = Order
-        fields = ['customer','date', 'products', 'quantity']
+        fields = ['customer','date', 'product', 'quantity']
 
