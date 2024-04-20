@@ -21,8 +21,8 @@ class Product(models.Model):
 
 class Order(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField('Order Date')
-    products = models.ForeignKey(Product, on_delete=models.CASCADE)
+    date = models.DateField('The Order Date was:')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.CharField(
         max_length=1,
         choices=QUANTITIES,
@@ -30,7 +30,7 @@ class Order(models.Model):
     )
 
     def __str__(self):
-        return f"{self.customer} ordered {self.products}"
+        return f"{self.customer} ordered {self.product}"
     
     class Meta:
         ordering = ['-date']
