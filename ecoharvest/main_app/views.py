@@ -6,6 +6,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import OrderForm
 
 # Create your views here.
 
@@ -39,6 +40,21 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+def order(request):
+   order_form = OrderForm()
+   return render(request, 'order.html', {'order_form': order_form})
+
+
+
+def new_order(request):
+  form = OrderForm(request.POST)
+  if form.is_valid():
+      form.save()
+  return redirect('home')
+
+
 
 class ProductList(ListView):
    model = Product
+
+
