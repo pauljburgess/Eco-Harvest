@@ -52,7 +52,17 @@ def order(request):
 def order_detail(request, order_id):
    order = Order.objects.get(id=order_id)
    order_line_form = OrderLineForm()
-   return render(request, 'orders/detail.html', {'order' : order, 'order_line_form' : order_line_form} )
+   return render(request, 'orders/detail.html', {'order' : order, 'order_line_form' : order_line_form})
+
+
+def add_order_line (request, order_id):
+  form = OrderLineForm(request.POST)
+  if form.is_valid():
+    new_line = form.save(commit=False)
+    new_line.customer = order_id
+    new_line.save()
+  return redirect('order_detail', order_id=order_id)
+
 
 class OrderCreate(CreateView):
    model = Order

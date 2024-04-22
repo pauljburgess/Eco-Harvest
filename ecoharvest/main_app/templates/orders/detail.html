@@ -3,9 +3,9 @@
 
 <h1>Create Order</h1>
 
-<form action="" method="POST">
+<form action="{% url 'add_order_line' order.id %}" method="POST">
     {% csrf_token %}
-    {{ orderlineform.as_table }}
+    {{ order_line_form.as_table }}
      <button type="submit">Add to Order</button>
 </form>
 
@@ -20,7 +20,7 @@
         {% for line in order.orderline_set.all%}
         <tr>
             <td>{{orderline.product}}</td>
-            <td>{{orderline.get_quantity_display}}</td>
+            <td>{{orderline.get_quantity_display}}</td> 
         </tr>
     </tbody>
         {% endfor %}
