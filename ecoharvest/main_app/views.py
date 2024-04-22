@@ -9,7 +9,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import OrderForm
+from .forms import OrderForm, OrderLineForm
 from datetime import date
 
 
@@ -49,20 +49,15 @@ def order(request):
    order_form = OrderForm()
    return render(request, 'order.html', {'order_form': order_form, })
 
+def order_detail(request, order_id):
+   order = Order.objects.get(id=order_id)
+   order_line_form = OrderLineForm()
+   return render(request, 'orders/detail.html', {'order' : order, 'order_line_form' : order_line_form} )
 
-def open_order(request):
-  form = OrderForm(request.POST)
-  if form.is_valid():
-    order = form.save(commit=False)
-    order.customer = request.user
-    order.date = str(date.today())
-    order.save()
-  return redirect('create_order')
-
-def create_order(request):
-   return render(request, 'orders/create_order.html')
-
-
+class OrderCreate(CreateView):
+   model = Order
+   fields = ['pickup_person']
+  
 class ProductList(ListView):
    model = Product 
 
