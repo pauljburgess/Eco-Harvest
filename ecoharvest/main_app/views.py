@@ -57,7 +57,10 @@ def open_order(request):
     order.customer = request.user
     order.date = str(date.today())
     order.save()
-  return redirect('product_index')
+  return redirect('create_order')
+
+def create_order(request):
+   return render(request, 'orders/create_order.html')
 
 
 class ProductList(ListView):
