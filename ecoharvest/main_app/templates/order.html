@@ -3,7 +3,7 @@
 
 <h1>New Order</h1>
 
-<form action="{% url 'new_order' %}" method="POST">
+<form action="{% url 'new_order'  %}" method="POST">
     {% csrf_token %}
     <table>
         {{order_form.as_table}}

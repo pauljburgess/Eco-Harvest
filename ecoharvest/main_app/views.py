@@ -47,18 +47,19 @@ def signup(request):
 
 def order(request):
    order_form = OrderForm()
-   return render(request, 'order.html', {'order_form': order_form})
+   products = Product.objects.all()
+   return render(request, 'order.html', {'order_form': order_form, 'products' : products})
 
 
-def new_order(request, ):
+def new_order(request):
+  print(request.POST)
   form = OrderForm(request.POST)
-  
+  Order.objects.get(id=request.id).products.add(product_id)
   if form.is_valid():
       order = form.save(commit=False)
       order.customer = request.user
       order.date = str(date.today())
       order.save()
-      print(order.products)
   return redirect('product_index')
 
 
