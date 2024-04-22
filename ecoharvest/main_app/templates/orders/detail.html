@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Create Order</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ orderlineform.as_table }}
+     <button type="submit">Add to Order</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for line in order.orderline_set.all%}
+        <tr>
+            <td>{{orderline.product}}</td>
+            <td>{{orderline.get_quantity_display}}</td>
+        </tr>
+    </tbody>
+        {% endfor %}
+</table>
+
+{% endblock %}
