@@ -7,6 +7,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import OrderForm
+from datetime import date
+
 
 # Create your views here.
 
@@ -45,15 +47,19 @@ def order(request):
    return render(request, 'order.html', {'order_form': order_form})
 
 
-def new_order(request):
+def new_order(request, ):
   form = OrderForm(request.POST)
+  
   if form.is_valid():
-      form.save()
+      order = form.save(commit=False)
+      order.customer = request.user
+      order.date = str(date.today())
+      order.save()
+      print(order.products)
   return redirect('product_index')
 
 
-
 class ProductList(ListView):
-   model = Product
+   model = Product 
 
 
