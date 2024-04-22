@@ -45,7 +45,6 @@ class OrderLine(models.Model):
         return f"{self.get_quantities_display} {self.product}"
     
 
-
 class Photo(models.Model):
     url = models.CharField(max_length=200)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)   
