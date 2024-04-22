@@ -28,3 +28,7 @@ class Photo(models.Model):
 
     def __str__(self):
         return f"Photo for product_id: {self.product_id} @{self.url}"
+    
+class Pickup(models.Model):
+    date = models.DateField('Pickup Date')
+    location = models.CharField('Pickup Location', max_length=250)
