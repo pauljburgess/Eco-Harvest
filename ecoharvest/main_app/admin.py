@@ -4,4 +4,4 @@ from .models import Product, Order, Photo, Pickup
 admin.site.register(Product)
 admin.site.register(Order)
 admin.site.register(Photo)
-admin.ste.register(Pickup)
+admin.site.register(Pickup)

@@ -13,14 +13,13 @@ class Product(models.Model):
 
 class Order(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    pickup_person = models.CharField(max_length=50, default='None')
     date = models.DateField('Order Date')
-    products = models.ManyToManyField(Product)
    
     def __str__(self):
         return f"{self.customer} placed an order: Order #{self.id} "
     
-    class Meta:
-        ordering = ['-date']
+
 
 class Photo(models.Model):
     url = models.CharField(max_length=200)

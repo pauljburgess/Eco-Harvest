@@ -7,8 +7,6 @@ class OrderForm(ModelForm):
     # products = forms.ModelMultipleChoiceField(
     #     queryset=Product.objects.all()
     # )
-
     class Meta:
         model = Order
-        fields = ['products']
-
+        fields = ['pickup_person']
