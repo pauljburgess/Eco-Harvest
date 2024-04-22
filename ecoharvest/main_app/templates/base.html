@@ -1,25 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <title>Eco-Harvest</title>
 </head>
 
 <body>
-    <header>
-        <div class="logo">
-            <img src="../static/images/logo.png" alt="">
-
-        </div>
-        <nav>
+    <header id="header">
+        <img src="{% static 'images/EcoHarvest.png'%}" alt="A portrait of a farmer with a shovel" style="width: 100%;">
+    </header>
+        <nav class="navigation">
             <a href="{% url 'home' %}">Home</a>
             <a href="{% url 'about' %}">About</a>
             <a href="{% url 'product_index' %}">Products</a>
             <a href="{% url 'order' %}">New Order</a>
+
         </nav>
-    </header>
 
     <main> 
         {% block content %}
