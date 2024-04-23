@@ -128,3 +128,27 @@ main {
     width: 200px; 
     height: auto; 
   }
+
+  .orders_main {
+    text-align: center; 
+    margin: 20px 0;
+  }
+  
+  .orders_main a {
+    display: inline-block; 
+    margin: 10px; 
+    padding: 10px 20px; 
+    background-color: #5c8d3e; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+  }
+  
+  .orders_main a:hover {
+    background-color: #537a32; 
+    color: #fff; 
+    text-decoration: none; 
+  }
+  
