@@ -1,15 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <h1>Orders</h1>
-
-
-<a href="">ALl my orders</a>
-
-<form action="{% url 'open_order' %}" method="POST">
-    {% csrf_token %}
-    {{ order_form.as_table }}
-     <button type="submit">Open New Order</button>
-</form>
+<a href="{% url 'order_index' %}">All my orders</a>
+<a href="{% url 'create_order' %}">Open a New Order</a>
 {% endblock %}
-
