@@ -1,10 +1,11 @@
 import os
 import uuid
 import boto3
+from django.db import models
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Product, Photo, Order
+from .models import Product, Photo, Order, OrderLine
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -55,16 +56,17 @@ def order(request):
    return render(request, 'order.html', {'order_form': order_form, })
 
 def order_detail(request, order_id):
+   print(order_id)
    order = Order.objects.get(id=order_id)
    order_line_form = OrderLineForm()
-   return render(request, 'orders/detail.html', {'order' : order, 'order_line_form' : order_line_form})
-
+   print(order)
+   return render(request, 'orders/detail.html', {'order' : order, 'order_line_form' : order_line_form })
 
 def add_order_line (request, order_id):
   form = OrderLineForm(request.POST)
   if form.is_valid():
     new_line = form.save(commit=False)
-    new_line.customer = order_id
+    new_line.customer = Order.objects.get(id=order_id)
     new_line.save()
   return redirect('order_detail', order_id=order_id)
 

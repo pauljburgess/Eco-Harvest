@@ -7,7 +7,7 @@
     <p>Seller: {{ product.owner }}</p>
     <p>Description: {{ product.description|linebreaks }}</p>
  
-</div>
+<div>
     {% for photo in product.photo_set.all %}
       <img src="{{photo.url}}">
     {% empty %}

@@ -4,12 +4,13 @@
 <h1>Product Listings</h1>
 
 {% for product in product_list %}
-    <div>
-        <h3>{{ product.name }}</h3>
-        <h5>Seller: {{ product.owner }}</h5>
-        <p>{{ product.description }}</p>
+    <div class="products-grid">
+        <div>
+            <h3>{{ product.name }}</h3>
+            <h5>Seller: {{ product.owner }}</h5>
+            <p>{{ product.description }}</p>
+        </div>
     </div>
-    
 {% endfor %}    
 
 {% endblock %}
