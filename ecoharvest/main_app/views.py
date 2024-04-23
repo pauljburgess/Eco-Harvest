@@ -69,9 +69,18 @@ def add_order_line (request, order_id):
     new_line.save()
   return redirect('order_detail', order_id=order_id)
 
+def order_index(request):
+   orders = Order.objects.filter(customer=request.user)
+   print(request.user)
+   return render(request, 'orders/index.html', {'orders' : orders})
+
 class OrderCreate(CreateView):
    model = Order
    fields = ['pickup_person', 'pickup']
+
+   def form_valid(self, form):
+      form.instance.customer = self.request.user
+      return super().form_valid(form)
   
 class ProductList(ListView):
    model = Product 
