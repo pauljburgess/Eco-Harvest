@@ -28,7 +28,7 @@ class Product(models.Model):
         return self.name
 
 class Order(models.Model):
-    customer = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
     pickup_person = models.CharField(max_length=50, default='None')
     date = models.DateField('Order Date', default=str(date.today()))
     pickup = models.ForeignKey(Pickup, on_delete=models.CASCADE, default=1)
