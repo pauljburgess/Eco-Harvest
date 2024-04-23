@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Orders</h1>
+
 <a href="{% url 'order_index' %}">All my orders</a>
 <a href="{% url 'create_order' %}">Open a New Order</a>
 {% endblock %}
+

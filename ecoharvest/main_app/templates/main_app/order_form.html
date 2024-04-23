@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Open an Order</h1>
+
+<form action="" method="POST">
+    {% csrf_token%}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <button type="submit">Open Order</button>
+</form>
+
+
+{% endblock %}

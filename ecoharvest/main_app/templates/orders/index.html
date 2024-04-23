@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="banner">
+<h1>Your Orders</h1>
+</div>
+
+    {% for order in orders %}
+    <div>
+
+        <p>
+            <a href="{% url 'order_detail' order.id %}">Order {{ order.id }}</a>
+            <a href="{% url 'order_update' order.id %}">Edit</a>
+            <a href="{% url 'order_delete' order.id %}">Delete Order</a>
+        
+        </p>
+        <p>Being picked up by {{ order.pickup_person}} at {{ order.pickup}}</p>
+        
+    </div>
+    {% endfor %}
+</body>
+</html>
+
+
+
+{% endblock %}

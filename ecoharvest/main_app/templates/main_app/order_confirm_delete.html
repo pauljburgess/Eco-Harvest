@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Delete Order</h1>
+
+<h3>WHAT?!? You don't want this amazing produce???</h3>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <button type="submit">Yeah, I hate local produce.</button>
+    <a href="{% url 'order_index' %}">Whoops! No, I definately want it.</a>
+</form>
+
+{% endblock %}
