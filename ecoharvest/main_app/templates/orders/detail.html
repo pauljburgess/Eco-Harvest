@@ -17,10 +17,10 @@
         </tr>
     </thead>
     <tbody>
-        {% for line in order.orderline_set.all%}
+        {% for line in order.orderline_set.all %}
         <tr>
-            <td>{{orderline.product}}</td>
-            <td>{{orderline.get_quantity_display}}</td> 
+            <td>{{ line.product}}</td>
+            <td>{{ line.get_quantity_display}}</td> 
         </tr>
     </tbody>
         {% endfor %}

@@ -42,7 +42,7 @@ class OrderLine(models.Model):
     )
 
     def __str__(self):
-        return f"{self.get_quantities_display} {self.product}"
+        return f"{self.get_quantity_display()} {self.product}"
     
 
 class Photo(models.Model):
