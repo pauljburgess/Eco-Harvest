@@ -39,6 +39,7 @@ class Order(models.Model):
     def get_absolute_url(self):
         return reverse('order_detail', kwargs={'order_id': self.id})
     
+    
 class OrderLine(models.Model):
     customer = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)

@@ -11,6 +11,7 @@
         <p>
             <a href="{% url 'order_detail' order.id %}">Order {{ order.id }}</a>
             <a href="{% url 'order_update' order.id %}">Edit</a>
+            <a href="{% url 'order_delete' order.id %}">Delete Order</a>
         
         </p>
         <p>Being picked up by {{ order.pickup_person}} at {{ order.pickup}}</p>

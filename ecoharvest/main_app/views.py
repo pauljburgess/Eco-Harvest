@@ -71,8 +71,9 @@ def add_order_line (request, order_id):
 
 def order_index(request):
    orders = Order.objects.filter(customer=request.user)
-   print(request.user)
    return render(request, 'orders/index.html', {'orders' : orders})
+
+   
 
 class OrderCreate(CreateView):
    model = Order
@@ -85,6 +86,10 @@ class OrderCreate(CreateView):
 class OrderUpdate(UpdateView):
    model = Order
    fields = ['pickup_person', 'pickup']
+
+class OrderDelete(DeleteView):
+   model = Order
+   success_url = '/orders/index'
 
 class ProductList(ListView):
    model = Product 
