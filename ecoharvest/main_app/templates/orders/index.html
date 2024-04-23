@@ -8,7 +8,11 @@
     {% for order in orders %}
     <div>
 
-        <p><a href="{% url 'order_detail' order.id %}">Order {{ order.id }}</a></p>
+        <p>
+            <a href="{% url 'order_detail' order.id %}">Order {{ order.id }}</a>
+            <a href="{% url 'order_update' order.id %}">Edit</a>
+        
+        </p>
         <p>Being picked up by {{ order.pickup_person}} at {{ order.pickup}}</p>
         
     </div>

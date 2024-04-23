@@ -81,7 +81,11 @@ class OrderCreate(CreateView):
    def form_valid(self, form):
       form.instance.customer = self.request.user
       return super().form_valid(form)
-  
+
+class OrderUpdate(UpdateView):
+   model = Order
+   fields = ['pickup_person', 'pickup']
+
 class ProductList(ListView):
    model = Product 
 
