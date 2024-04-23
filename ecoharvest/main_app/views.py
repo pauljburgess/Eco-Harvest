@@ -1,15 +1,16 @@
 import os
 import uuid
 import boto3
+from django.db import models
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Product, Photo, Order
+from .models import Product, Photo, Order, OrderLine, Pickup
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import OrderForm
+from .forms import OrderForm, OrderLineForm
 from datetime import date
 
 
@@ -34,13 +35,18 @@ def products_detail(request, product_id):
 def signup(request):
   error_message = ''
   if request.method == 'POST':
+    # This is how to create a 'user' form object
+    # that includes the data from the browser
     form = UserCreationForm(request.POST)
     if form.is_valid():
+      # This will add the user to the database
       user = form.save()
+      # This is how we log a user in via code
       login(request, user)
-      return redirect('index')
+      return redirect('home')
     else:
       error_message = 'Invalid sign up - try again'
+  # A bad POST or a GET request, so render signup.html with an empty form
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
@@ -49,19 +55,41 @@ def order(request):
    order_form = OrderForm()
    return render(request, 'order.html', {'order_form': order_form, })
 
+def order_detail(request, order_id):
+   order = Order.objects.get(id=order_id)
+   available_pickups = Pickup.objects.all()
+   order_line_form = OrderLineForm()
+   return render(request, 'orders/detail.html', {'order' : order, 'order_line_form' : order_line_form, 'pickup': available_pickups })
 
-def open_order(request):
-  form = OrderForm(request.POST)
+def add_order_line (request, order_id):
+  form = OrderLineForm(request.POST)
   if form.is_valid():
-    order = form.save(commit=False)
-    order.customer = request.user
-    order.date = str(date.today())
-    order.save()
-  return redirect('create_order')
+    new_line = form.save(commit=False)
+    new_line.customer = Order.objects.get(id=order_id)
+    new_line.save()
+  return redirect('order_detail', order_id=order_id)
 
-def create_order(request):
-   return render(request, 'orders/create_order.html')
+def order_index(request):
+   orders = Order.objects.filter(customer=request.user)
+   return render(request, 'orders/index.html', {'orders' : orders})
 
+   
+
+class OrderCreate(CreateView):
+   model = Order
+   fields = ['pickup_person', 'pickup']
+
+   def form_valid(self, form):
+      form.instance.customer = self.request.user
+      return super().form_valid(form)
+
+class OrderUpdate(UpdateView):
+   model = Order
+   fields = ['pickup_person', 'pickup']
+
+class OrderDelete(DeleteView):
+   model = Order
+   success_url = '/orders/index'
 
 class ProductList(ListView):
    model = Product 

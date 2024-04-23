@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Order {{ order.id}} </h1>
+<h3>{{ order.pickup_person}} is picking this up at {{ order.pickup }}</h3>
+
+<form action="{% url 'add_order_line' order.id %}" method="POST">
+    {% csrf_token %}
+    {{ order_line_form.as_table }}
+     <button type="submit">Add to Order</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for line in order.orderline_set.all %}
+        <tr>
+            <td>{{ line.product}}</td>
+            <td>{{ line.get_quantity_display}}</td> 
+        </tr>
+    </tbody>
+        {% endfor %}
+</table>
+
+<a href="{% url 'order_index' %}">Complete</a>
+
+{% endblock %}
