@@ -14,6 +14,7 @@ QUANTITIES = (
 class Pickup(models.Model):
     date = models.DateField('Pickup Date')
     location = models.CharField('Pickup Location', max_length=250)
+    products = models.ManyToManyField('Product')
 
     def __str__(self):
         return f"{self.location} on {self.date}"
@@ -23,7 +24,8 @@ class Product(models.Model):
     description = models.TextField(max_length=250)
     owner = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    pickups = models.ManyToManyField('Pickup')
+    
     def __str__(self):
         return self.name
 
