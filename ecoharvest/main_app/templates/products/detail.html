@@ -1,24 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div class="product_details">
 <h1>Product Details</h1>
-
 <h2>{{ product.name }}</h2>
-    <p>Seller: {{ product.owner }}</p>
-    <p>Description: {{ product.description|linebreaks }}</p>
- 
+<p>Seller: {{ product.owner }}</p>
+<p>Description: {{ product.description|linebreaks }}</p>
+
 <div>
-    {% for photo in product.photo_set.all %}
-      <img src="{{photo.url}}">
-    {% empty %}
-      <div>No Photos Uploaded</div>
-    {% endfor %}
-    <form action="{% url 'add_photo' product.id %}" enctype="multipart/form-data" method="POST">
-      {% csrf_token %}
-      <input type="file" name="photo-file">
-      <br><br>
-      <button type="submit" class="btn">Upload Photo</button>
-    </form>
+  {% for photo in product.photo_set.all %}
+    <img src="{{ photo.url }}" alt="{{ product.name }}">
+  {% empty %}
+    <div>No Photos Uploaded</div>
+  {% endfor %}
+  <form action="{% url 'add_photo' product.id %}" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    <input type="file" name="photo-file">
+    <button type="submit" class="btn">Upload Photo</button>
+  </form>
 </div>
-  
+</div>
 {% endblock %}
