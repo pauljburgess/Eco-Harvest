@@ -16,6 +16,9 @@ urlpatterns = [
     path('products/<int:product_id>/add_photo/', views.add_photo, name='add_photo'),
     path('accounts/signup/', views.signup, name='signup'),
     path('pickups/index/', views.pickup_index, name="pickup_index"),
-    path('pickups/create/', views.OrderCreate.as_view(), name="create_opickup"),
+    path('pickups/create/', views.PickupCreate.as_view(), name="create_pickup"),
+    path('pickups/<int:pickup_id>/', views.pickup_detail, name="pickup_detail"),
+    path('pickups/<int:pk>/update/', views.pickup_update, name="pickup_update"),
+    path('products/create/', views.ProductCreate.as_view(), name="create_product"),
     
 ]

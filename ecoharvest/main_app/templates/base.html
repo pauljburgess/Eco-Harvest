@@ -15,12 +15,11 @@
     </header>
         <nav class="navigation">
             <a href="{% url 'about' %}">About</a>
-            {% if user.is_authenticated %}
             <a href="{% url 'home' %}">Home</a>
+            {% if user.is_authenticated %}
             <a href="{% url 'product_index' %}">Products</a>
             <a href="{% url 'order' %}">Orders</a>
             <a href="{% url 'pickup_index' %}">Pickups</a>
-            <a href="{% url 'login'%}">Log In</a>
             <form id="logout-form" method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
                 <button type="submit" class='btn-flat white-text'>Log Out</button>

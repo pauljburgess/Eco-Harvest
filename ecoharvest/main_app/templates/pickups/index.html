@@ -1,16 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
-
-
-
-
-
-
-
-
-
+<div class="pickups-grid">
+    {% for pickup in pickups %}
+        <div>
+            <a href="{% url 'detail' pickup.id %}">
+                <div>
+                    <h3>{{ pickup.location }}</h3>
+                    <h5>{{ pickup.date }}</h5>
+                </div>
+            </a>
+        </div>
+    {% endfor %}   
+    <a href="{% url 'create_pickup' %}">Create a new Pickup</a> 
+</div>
 
 
 

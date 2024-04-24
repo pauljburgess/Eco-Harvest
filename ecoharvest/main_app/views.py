@@ -10,9 +10,10 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import OrderForm, OrderLineForm
+from .forms import OrderForm, OrderLineForm, PickupForm
 from datetime import date
 from django.utils import timezone
+from django.urls import reverse
 
 
 # Create your views here.
@@ -28,6 +29,7 @@ def products_index(request):
     return render(request, 'products/index.html', {
         'products': products
     })
+
 
 def products_detail(request, product_id):
   product = Product.objects.get(id=product_id)
@@ -47,21 +49,25 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+@login_required
 def order(request):
    order_form = OrderForm()
    return render(request, 'order.html', {'order_form': order_form, })
 
+@login_required
 def order_detail(request, order_id):
    order = Order.objects.get(id=order_id)
    available_pickups = Pickup.objects.all()
    order_line_form = OrderLineForm()
-   total = sum(order.or)
+   total = sum(order.orderline_set.all())
    return render(request, 'orders/detail.html', {'order' : order, 'order_line_form' : order_line_form, 'pickup': available_pickups })
 
+@login_required
 def pickup_detail(request, pickup_id):
    pickups = Pickup.objects.get(id=pickup_id)
    return render(request, 'pickups/detail.html', {'pickups' : pickups })
 
+@login_required
 def add_order_line (request, order_id):
   form = OrderLineForm(request.POST)
   print(order_id)
@@ -71,6 +77,7 @@ def add_order_line (request, order_id):
     new_line.save()
   return redirect('order_detail', order_id=order_id)
 
+@login_required
 def order_index(request):
    orders = Order.objects.filter(customer=request.user)
    return render(request, 'orders/index.html', {'orders' : orders})  
@@ -79,11 +86,23 @@ def pickup_index(request):
    pickups = Pickup.objects.filter(date__gte=timezone.now().date())
    return render(request, 'pickups/index.html', {'pickups' : pickups}) 
 
-class PickupCreate(CreateView):
+class ProductCreate(LoginRequiredMixin, CreateView):
+   model = Product
+   fields = ['name', 'description']
+
+   def form_valid(self, form):
+        form.instance.user = self.request.user 
+        form.instance.owner = self.request.user.username  
+        return super().form_valid(form)
+
+   def get_success_url(self):
+        return reverse('product_detail', kwargs={'pk': self.id})
+   
+class PickupCreate(LoginRequiredMixin, CreateView):
    model = Pickup
    fields = ['location', 'date']
 
-class OrderCreate(CreateView):
+class OrderCreate(LoginRequiredMixin, CreateView):
    model = Order
    fields = ['pickup_person', 'pickup']
 
@@ -91,20 +110,21 @@ class OrderCreate(CreateView):
       form.instance.customer = self.request.user
       return super().form_valid(form)
 
-class OrderUpdate(UpdateView):
+class OrderUpdate(LoginRequiredMixin, UpdateView):
    model = Order
    fields = ['pickup_person', 'pickup']
 
-class OrderDelete(DeleteView):
+class OrderDelete(LoginRequiredMixin, DeleteView):
    model = Order
    success_url = '/orders/index'
 
-class ProductList(ListView):
+class ProductList(LoginRequiredMixin, ListView):
    model = Product 
 
-class PickupList(ListView):
+class PickupList(LoginRequiredMixin, ListView):
    model = Pickup
 
+@login_required
 def add_photo(request, product_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
@@ -120,3 +140,18 @@ def add_photo(request, product_id):
             print('An error occurred uploading file to S3')
             print(e)
     return redirect('detail', product_id=product_id)
+
+@login_required
+def pickup_update(request, pickup_id):
+   pickup = Pickup.objects.get(id=pickup_id)
+   products = Product.objects.filter(created_by=request.user)
+   if request.method == 'POST':
+      form = PickupForm(request.POST, queryset=products)
+      if form.is_valid():
+         products_selected = form.cleaned_data.get('products', [])
+         pickup.products.add(*products_selected)
+         pickup.save()
+         return redirect('pickup_detail', pickup_id=pickup_id)
+   else: 
+      form = PickupForm(initial={'products' : pickup.products.all()}, queryset=products)
+   return render(request, 'pickup_update.html', {'form': form})
