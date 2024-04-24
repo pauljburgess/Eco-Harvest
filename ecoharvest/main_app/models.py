@@ -5,11 +5,11 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 QUANTITIES = (
-    ('1', '1'),
-    ('2', '2'),
-    ('3', '3'),
-    ('4', '4'),
-    ('5', '5'),
+    ('1', 1),
+    ('2', 2),
+    ('3', 3),
+    ('4', 4),
+    ('5', 5),
 )
 
 class Pickup(models.Model):
@@ -26,10 +26,9 @@ class Product(models.Model):
     owner = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     pickups = models.ManyToManyField('Pickup')
-    price = models.CharField(max_length=10)
-    
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     def __str__(self):
-        return self.name
+        return f"{self.name}" 
 
 class Order(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -52,6 +51,9 @@ class OrderLine(models.Model):
         choices=QUANTITIES,
         default=QUANTITIES[0][0]
     )
+
+    def line_cost(self):
+        return int(self.quantity) * self.product.price
 
     def __str__(self):
         return f"{self.get_quantity_display()} {self.product}"

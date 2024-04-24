@@ -15,13 +15,18 @@
         <tr>
             <th>Product</th>
             <th>Quantity</th>
+            <th>Price</th>
         </tr>
     </thead>
     <tbody>
         {% for line in order.orderline_set.all %}
         <tr>
-            <td>{{ line.product}}</td>
-            <td>{{ line.get_quantity_display}}</td> 
+            <td>{{ line.product }}</td>
+            <td>{{ line.get_quantity_display}}</td>
+            <td>{{ line.line_cost  }}</td>
+        </tr>
+        <tr>
+            {{ order.order_total}}
         </tr>
     </tbody>
         {% endfor %}
