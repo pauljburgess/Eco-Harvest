@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='product',
             name='price',
-            field=models.CharField(default=1, max_length=10),
-            preserve_default=False,
+            field=models.CharField(default='0.00', max_length=10),
+
         ),
     ]

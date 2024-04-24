@@ -59,6 +59,7 @@ def order_detail(request, order_id):
    order = Order.objects.get(id=order_id)
    available_pickups = Pickup.objects.all()
    order_line_form = OrderLineForm()
+   total = sum(order.orderline_set.all())
    return render(request, 'orders/detail.html', {'order' : order, 'order_line_form' : order_line_form, 'pickup': available_pickups })
 
 @login_required
@@ -69,6 +70,7 @@ def pickup_detail(request, pickup_id):
 @login_required
 def add_order_line (request, order_id):
   form = OrderLineForm(request.POST)
+  print(order_id)
   if form.is_valid():
     new_line = form.save(commit=False)
     new_line.customer = Order.objects.get(id=order_id)
