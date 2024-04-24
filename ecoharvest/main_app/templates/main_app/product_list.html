@@ -4,15 +4,24 @@
 <h1>Product Listings</h1>
 
 <div class="products-grid">
-{% for product in product_list %}
-    <div>
+    {% for product in product_list %}
         <div>
-            <h3>{{ product.name }}</h3>
-            <h5>Seller: {{ product.owner }}</h5>
-            <p>{{ product.description }}</p>
+            <a href="{% url 'detail' product.id %}">
+                <div>
+                    <h3>{{ product.name }}</h3>
+                    {% if product.photo_set.first %}
+                        <div class="product-photo">
+                            <img src="{{ product.photo_set.first.url }}" alt="{{ product.name }}">
+                        </div>
+                    {% else %}
+                        <p>No photo available</p>
+                    {% endif %}
+                    <h5>Seller: {{ product.owner }}</h5>
+                    <p>{{ product.description }}</p>
+                </div>
+            </a>
         </div>
-    </div>
-{% endfor %}    
+    {% endfor %}    
 </div>
 
 {% endblock %}
