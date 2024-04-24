@@ -61,7 +61,7 @@ class OrderLine(models.Model):
 
     def line_cost(self):
         return int(self.quantity) * self.product.price
-
+      
     def __str__(self):
         return f"{self.get_quantity_display()} {self.product}"
     
