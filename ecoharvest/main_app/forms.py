@@ -12,3 +12,15 @@ class OrderLineForm(ModelForm):
     class Meta:
         model = OrderLine
         fields = ['product', 'quantity']
+
+class PickupForm(ModelForm):
+    products = forms.ModelMultipleChoiceField(queryset=Product.objects.none(), widget=forms.CheckboxSelectMultiple, required=False)
+
+    class Meta:
+        model = Pickup
+        fields = ['products']
+    def __init__(self, *args, **kwargs):
+        queryset = kwargs.pop('queryset', None)
+        super().__init__(*args, **kwargs)
+        if queryset is not None:
+            self.fields['products'].queryset = queryset

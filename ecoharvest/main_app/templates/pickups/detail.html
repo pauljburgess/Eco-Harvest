@@ -9,14 +9,14 @@
       <tr>
         <th>Product Name</th>
         <th>Description</th>
-        <th>Owner</th>
+        <th>Seller</th>
         <th>Photo</th>
       </tr>
     </thead>
     <tbody>
       {% for product in pickup.products.all %}
       <tr>
-        <td>{{ product.name }}</td>
+        <td><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></td>
         <td>{{ product.description }}</td>
         <td>{{ product.owner }}</td>
         <td>
@@ -31,7 +31,8 @@
       </tr>
       {% endfor %}
     </tbody>
-  </table>
+</table>
+
 
 
 {% endblock %}
