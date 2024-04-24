@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Create a Pickup</h1>
+
+<form action="" method="POST">
+    {% csrf_token%}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <button type="submit">Create Pickup</button>
+</form>
+
+
+{% endblock %}

@@ -10,9 +10,10 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import OrderForm, OrderLineForm
+from .forms import OrderForm, OrderLineForm, PickupForm
 from datetime import date
 from django.utils import timezone
+from django.urls import reverse
 
 
 # Create your views here.
@@ -77,6 +78,18 @@ def pickup_index(request):
    pickups = Pickup.objects.filter(date__gte=timezone.now().date())
    return render(request, 'pickups/index.html', {'pickups' : pickups}) 
 
+class ProductCreate(CreateView):
+   model = Product
+   fields = ['name', 'description']
+
+   def form_valid(self, form):
+        form.instance.user = self.request.user 
+        form.instance.owner = self.request.user.username  
+        return super().form_valid(form)
+
+   def get_success_url(self):
+        return reverse('product_detail', kwargs={'pk': self.id})
+   
 class PickupCreate(CreateView):
    model = Pickup
    fields = ['location', 'date']
@@ -118,3 +131,17 @@ def add_photo(request, product_id):
             print('An error occurred uploading file to S3')
             print(e)
     return redirect('detail', product_id=product_id)
+
+def pickup_update(request, pickup_id):
+   pickup = Pickup.objects.get(id=pickup_id)
+   products = Product.objects.filter(created_by=request.user)
+   if request.method == 'POST':
+      form = PickupForm(request.POST, queryset=products)
+      if form.is_valid():
+         products_selected = form.cleaned_data.get('products', [])
+         pickup.products.add(*products_selected)
+         pickup.save()
+         return redirect('pickup_detail', pickup_id=pickup_id)
+   else: 
+      form = PickupForm(initial={'products' : pickup.products.all()}, queryset=products)
+   return render(request, 'pickup_update.html', {'form': form})

@@ -18,6 +18,9 @@ class Pickup(models.Model):
 
     def __str__(self):
         return f"{self.location} on {self.date}"
+    
+    def get_absolute_url(self):
+        return reverse('pickup_detail', kwargs={'pickup_id': self.id})
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
@@ -25,9 +28,12 @@ class Product(models.Model):
     owner = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     pickups = models.ManyToManyField('Pickup')
-    
+
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('product_detail', kwargs={'order_id': self.id})
 
 class Order(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
