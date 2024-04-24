@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import OrderForm, OrderLineForm
 from datetime import date
+from django.utils import timezone
 
 
 # Create your views here.
@@ -35,18 +36,13 @@ def products_detail(request, product_id):
 def signup(request):
   error_message = ''
   if request.method == 'POST':
-    # This is how to create a 'user' form object
-    # that includes the data from the browser
     form = UserCreationForm(request.POST)
     if form.is_valid():
-      # This will add the user to the database
       user = form.save()
-      # This is how we log a user in via code
       login(request, user)
       return redirect('home')
     else:
       error_message = 'Invalid sign up - try again'
-  # A bad POST or a GET request, so render signup.html with an empty form
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
@@ -61,6 +57,10 @@ def order_detail(request, order_id):
    order_line_form = OrderLineForm()
    return render(request, 'orders/detail.html', {'order' : order, 'order_line_form' : order_line_form, 'pickup': available_pickups })
 
+def pickup_detail(request, pickup_id):
+   pickups = Pickup.objects.get(id=pickup_id)
+   return render(request, 'pickups/detail.html', {'pickups' : pickups })
+
 def add_order_line (request, order_id):
   form = OrderLineForm(request.POST)
   if form.is_valid():
@@ -71,9 +71,15 @@ def add_order_line (request, order_id):
 
 def order_index(request):
    orders = Order.objects.filter(customer=request.user)
-   return render(request, 'orders/index.html', {'orders' : orders})
+   return render(request, 'orders/index.html', {'orders' : orders})  
 
-   
+def pickup_index(request):
+   pickups = Pickup.objects.filter(date__gte=timezone.now().date())
+   return render(request, 'pickups/index.html', {'pickups' : pickups}) 
+
+class PickupCreate(CreateView):
+   model = Pickup
+   fields = ['location', 'date']
 
 class OrderCreate(CreateView):
    model = Order
@@ -93,6 +99,9 @@ class OrderDelete(DeleteView):
 
 class ProductList(ListView):
    model = Product 
+
+class PickupList(ListView):
+   model = Pickup
 
 def add_photo(request, product_id):
     photo_file = request.FILES.get('photo-file', None)
