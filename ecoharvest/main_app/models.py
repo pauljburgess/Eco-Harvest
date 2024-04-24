@@ -11,6 +11,7 @@ QUANTITIES = (
     ('4', '4'),
     ('5', '5'),
 )
+
 class Pickup(models.Model):
     date = models.DateField('Pickup Date')
     location = models.CharField('Pickup Location', max_length=250)
@@ -28,6 +29,7 @@ class Product(models.Model):
     owner = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     pickups = models.ManyToManyField('Pickup')
+    price = models.CharField(max_length=10)
 
     def __str__(self):
         return self.name
