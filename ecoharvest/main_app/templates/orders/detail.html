@@ -1,6 +1,80 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<style>
+    h1, h3 {
+      text-align: center;
+      color: #333;
+    }
+  
+    form {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #f8f0e3; 
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+  
+    form button {
+      padding: 10px 15px;
+      background-color: #5c8d3e; 
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  
+    form button:hover {
+      background-color: #537a32; 
+    }
+  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px auto;
+    }
+  
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+  
+    th {
+      background-color: #5c8d3e; 
+      color: white;
+      padding: 10px;
+    }
+  
+    td {
+      padding: 10px;
+      text-align: center;
+    }
+  
+    tbody tr:hover {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: box-shadow 0.3s ease-in-out;
+    }
+  
+    a {
+      display: block;
+      width: fit-content;
+      margin: auto;
+      padding: 10px 20px;
+      background-color: #5c8d3e; 
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      margin-top: 20px;
+    }
+  
+    a:hover {
+      background-color: #537a32; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+  </style>
+
 <h1>Order {{ order.id}} </h1>
 <h3>{{ order.pickup_person}} is picking this up at {{ order.pickup }}</h3>
 
