@@ -15,4 +15,7 @@ urlpatterns = [
     path('orders/<int:order_id>/add_order_line/', views.add_order_line, name='add_order_line'),
     path('products/<int:product_id>/add_photo/', views.add_photo, name='add_photo'),
     path('accounts/signup/', views.signup, name='signup'),
+    path('pickups/index/', views.pickup_index, name="pickup_index"),
+    path('pickups/create/', views.OrderCreate.as_view(), name="create_opickup"),
+    
 ]

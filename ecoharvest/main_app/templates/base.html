@@ -19,6 +19,7 @@
             <a href="{% url 'home' %}">Home</a>
             <a href="{% url 'product_index' %}">Products</a>
             <a href="{% url 'order' %}">Orders</a>
+            <a href="{% url 'pickup_index' %}">Pickups</a>
             <a href="{% url 'login'%}">Log In</a>
             <form id="logout-form" method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
