@@ -4,7 +4,7 @@
 <div class="pickups-grid">
     {% for pickup in pickups %}
         <div>
-            <a href="{% url 'detail' pickup.id %}">
+            <a href="{% url 'pickup_detail' pickup.id %}">
                 <div>
                     <h3>{{ pickup.location }}</h3>
                     <h5>{{ pickup.date }}</h5>
