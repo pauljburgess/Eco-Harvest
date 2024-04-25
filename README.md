@@ -40,10 +40,6 @@ Getting started is easy! You can check out the app [here](https://ecoharvest-5fd
 
 ![alt text](main_app/static/images/home.png)
 
-##### Products Page
-
-![Products Page](main_app/static/images/products.png)
-
 ##### Products Detail Page
 
 ![Products Detail Page](main_app/static/images/product_details.png)
@@ -52,17 +48,9 @@ Getting started is easy! You can check out the app [here](https://ecoharvest-5fd
 
 ![Orders Page](main_app/static/images/orders.png)
 
-##### Create an Order Page
-
-![Order Creation Page](main_app/static/images/create_order.png)
-
 ##### My Orders Page
 
 ![My Orders Page](main_app/static/images/my_orders.png)
-
-##### About Page
-
-![About Page](main_app/static/images/about.png)
 
 ---
 ### Deployed App Screen Shots
