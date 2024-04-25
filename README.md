@@ -1,4 +1,4 @@
-# ![alt text](images/logo.png) Eco-Harvest
+# ![alt text](main_app/static/images/logo.png) Eco-Harvest
 A full-stack web application used for a Direct-to-Consumer produce production.
 ### Project Started: 2024/04/17
 ### By: Seryah Williams, Paul Burgess, & Patrick D'Arcy
