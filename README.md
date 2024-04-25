@@ -34,40 +34,52 @@ Getting started is easy! You can check out the app [here]() on Heroku.
 
 ---
 
-### **Screenshots**
+### **Wireframes**
 
 ##### Home Page
 
-![alt text](images/about.png)
+![alt text](main_app/static/images/home.png)
 
 ##### Products Page
 
-![alt text](images/products.png)
+![Products Page](main_app/static/images/products.png)
 
 ##### Products Detail Page
 
-![alt text](images/product_details.png)
+![Products Detail Page](main_app/static/images/product_details.png)
 
 ##### Orders Page
 
-![alt text](images/orders.png)
+![Orders Page](main_app/static/images/orders.png)
 
 ##### Create an Order Page
 
-![alt text](images/create_order.png)
+![Order Creation Page](main_app/static/images/create_order.png)
 
 ##### My Orders Page
 
-![alt text](images/my_orders.png)
+![My Orders Page](main_app/static/images/my_orders.png)
 
 ##### About Page
 
-![alt text](images/about.png)
+![About Page](main_app/static/images/about.png)
+
+---
+### Deployed App Screen Shots
+
+##### Home Page
+
+![Home Page](main_app/static/images/home_ss.png)
+
+##### My Orders Page
+
+![My Orders Page](main_app/static/images/myorders_ss.png)
+
 
 ---
 ### Backend ERD
 
-![ERD](images/ERD.png)
+![ERD](main_app/static/images/ERD.png)
 
 ---
 ### Pitch Deck and Trello Board
@@ -80,4 +92,9 @@ This project also used a [Trello](https://trello.com/b/fHnGf0q1/project-3) board
 ### **Future Updates**
 
 - [ ] Add the ability to have multiple venders use the website.
-- [ ] Deploy the app
+- [X] Deploy the app
+
+---
+### **References**
+
+The [Cat Collector](https://generalassembly.instructure.com/courses/196/pages/django-urls-views-and-templates?module_item_id=8094) lessons of General Assembly were used as a primary reference for this project.
