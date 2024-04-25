@@ -30,7 +30,7 @@ If they choose to make an account and login, they will then gain the ability to 
 
 ### **Deployed App**
 
-Getting started is easy! You can check out the app [here]() on Heroku. 
+Getting started is easy! You can check out the app [here](https://ecoharvest-5fd299602b6f.herokuapp.com/) on Heroku. 
 
 ---
 
