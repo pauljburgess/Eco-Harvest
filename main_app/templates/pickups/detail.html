@@ -2,37 +2,8 @@
 {% block content %}
 
 <h1>Pickup Details</h1>
-<h2>Products available at this pickup</h2>
-
-<table>
-    <thead>
-      <tr>
-        <th>Product Name</th>
-        <th>Description</th>
-        <th>Seller</th>
-        <th>Photo</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for product in pickup.products.all %}
-      <tr>
-        <td><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></td>
-        <td>{{ product.description }}</td>
-        <td>{{ product.owner }}</td>
-        <td>
-            {% if product.photo_set.first %}
-            <div class="product-photo">
-                <img src="{{ product.photo_set.first.url }}" alt="{{ product.name }}">
-            </div>
-        {% else %}
-            <p>No photo available</p>
-        {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-</table>
-
+<p>{{ pickup.date }}</p>
+<p>{{ pickup.location}}</p>
 
 
 {% endblock %}

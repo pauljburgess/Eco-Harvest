@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="pickups-grid">
+<div class="products-grid">
     {% for pickup in pickups %}
         <div>
             <a href="{% url 'pickup_detail' pickup.id %}">
