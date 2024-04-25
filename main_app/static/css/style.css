@@ -264,7 +264,7 @@ main {
 }
 
 .product_details {
-
+    margin-bottom: 50px,
   h1, h2 {
     text-align: center;
     color: #5c8d3e; 
