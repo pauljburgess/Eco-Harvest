@@ -87,7 +87,7 @@ def pickup_index(request):
 
 class ProductCreate(LoginRequiredMixin, CreateView):
    model = Product
-   fields = ['name', 'description']
+   fields = ['name', 'description', 'price']
 
    def form_valid(self, form):
         form.instance.user = self.request.user 
@@ -95,7 +95,7 @@ class ProductCreate(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
    def get_success_url(self):
-        return reverse('product_detail', kwargs={'pk': self.id})
+        return reverse('product_index')
    
 class PickupCreate(LoginRequiredMixin, CreateView):
    model = Pickup
