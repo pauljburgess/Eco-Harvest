@@ -322,6 +322,9 @@ main {
   .btn:hover {
     background-color: #537a32; 
   }
+    img{
+        height: 450px;
+    }
 }
 
 .products_list {
