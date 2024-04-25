@@ -283,11 +283,12 @@ main {
   }
 
   img {
-    max-width: 100%; 
-    height: auto; 
+    width: auto; 
+    height: 450px; 
     margin: 10px 0; 
     border-radius: 8px; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    
   }
 
   form {
@@ -322,9 +323,6 @@ main {
   .btn:hover {
     background-color: #537a32; 
   }
-    img{
-        height: 450px;
-    }
 }
 
 .products_list {
