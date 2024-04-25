@@ -47,6 +47,7 @@ main {
 }
 
 .footer {
+    position: fixed;
     background-color: #2f3b2f; 
     color: white;
     padding: 10px 0;
